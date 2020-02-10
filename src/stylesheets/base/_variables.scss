@@ -1,0 +1,36 @@
+// Typography
+$base-font-size: 16px;
+
+// Color Scheme
+$colors: (
+    'monochrome': (
+        'white': #fff,
+        'black': #000,
+        'mine-shaft': #2a2727,
+        'ship-gray': #414042,
+    ),
+    'yellow': (
+        'turbo-yellow': #ffe600,
+        'school-bus-yellow': #ffdc00,
+        'gold': #ffd200,
+        'madras': #3d3201,
+    ),
+    'orange': (
+        'orange-peel': #ffa200,
+        'flush-orange': #ff7800,
+    ),
+    'brown': (
+        'brown': #974700,
+        'carnaby-tan': #542700,
+        'nutmeg': #6d3402
+    )
+);
+
+// Font Weights
+$font-weight: (
+    'book': 300,
+    'regular': 400,
+    'bold': 700,
+    'black': 800,
+    'ultrablack': 900
+)

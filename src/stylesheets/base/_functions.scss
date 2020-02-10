@@ -1,0 +1,60 @@
+// Convert fraction to a percent
+@function fracToDec($fraction) {
+    @return ($fraction * 100%);
+}
+
+// Strip unit from number
+@function stripUnit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+// Convert px to rem
+@function rem($values...) {
+    $max: length($values);
+    $remValues: '';
+
+    @for $i from 1 through $max {
+        $value: stripUnit(nth($values, $i));
+        $remValues: if($value != 0, #{$remValues + $value/stripUnit($base-font-size) * 1rem}, #{$remValues + 0});
+
+        @if $i < $max {
+            $remValues: #{$remValues + " "};
+        }
+    }
+    @return $remValues;
+}
+
+// Convert px to rem for any CSS property
+@mixin rem($property, $values...) {
+    $max: length($values);
+    $remValues: '';
+
+    @for $i from 1 through $max {
+        $value: stripUnit(nth($values, $i));
+        $remValues: if($value != 0, #{$remValues + $value/stripUnit($base-font-size) * 1rem}, #{$remValues + 0});
+
+        @if $i < $max {
+            $remValues: #{$remValues + " "};
+        }
+    }
+    #{$property}: $remValues;
+}
+
+// Get value, in percent, based on pixel values
+@function calc-percent($target, $container: $site-width) {
+    @return ($target / $container) * 100%;
+}
+
+// Map deep get
+// example: map-deep-get($colors, 'primary', 'dark');
+@function map-deep-get($map, $keys...) {
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+    @return $map;
+}
+
+// Site color function
+@function color($keys...) {
+    @return map-deep-get($colors, $keys...);
+}

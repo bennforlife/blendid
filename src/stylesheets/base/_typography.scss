@@ -1,3 +1,16 @@
+html {
+  font-size: 100%;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: quatro, sans-serif;
+  line-height: 1.5;
+}
+
+.section_header {
+  font-size: rem(48px);
+  font-weight: map-get($font-weight, 'black');
+  font-style: italic;
+  text-align: center;
+  text-shadow: 4px 4px site-color('orange', 'orange-peel');
 }

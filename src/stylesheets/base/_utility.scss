@@ -1,0 +1,64 @@
+// Output container widths based on $screens
+%container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: rem(22px);
+    padding-right: rem(22px);
+    @include container-sizes;
+}
+
+.container {
+    @extend %container;
+}
+
+%clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+.clearfix {
+    @extend %clearfix;
+}
+
+%absolute-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+%absolute-center-x {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+%absolute-center-y {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+%pseudos {
+    content: '';
+    position: absolute;
+}
+
+%padding {
+    padding-right: calc-percent(32px, 640px);
+    padding-left: calc-percent(32px, 640px);
+}
+
+@mixin p-el($el, $el-width, $el-height) {
+    @if $el == "before" or $el == "after" {
+        &::#{$el} {
+            @extend %pseudos;
+            width: $el-width;
+            height: $el-height;
+            @content;
+        }
+    }
+    @else {
+        @error "`#{$el}` is not a valid pseudo-element.";
+    }
+}

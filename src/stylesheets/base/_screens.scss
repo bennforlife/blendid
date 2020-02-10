@@ -1,0 +1,23 @@
+$screens: (
+    sm: 600px,
+    md: 900px,
+    lg: 1200px,
+);
+
+@mixin screen($breakpoint, $screens: $screens) {
+    @if map-has-key($screens, $breakpoint) {
+        $breakpoint: map-get($screens, $breakpoint);
+    }
+    
+    @media screen and (min-width: #{$breakpoint}) {
+        @content;
+    }
+}
+
+@mixin container-sizes() {
+    @each $breakpoint, $value in $screens {
+        @include screen($breakpoint) {
+            max-width: $value; 
+        }
+    }
+}
